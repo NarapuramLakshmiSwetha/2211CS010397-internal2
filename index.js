@@ -15,7 +15,7 @@ app.listen(PORT, () => {
 });
 
 // MongoDB connection URI
-const MONGODB_URI = 'mongodb://localhost:27017/swetha'; // Adjust to your MongoDB URI
+const MONGODB_URI = 'mongodb+srv://2211cs010397:Pv6zcdGEz8nCRJVs@cluster1.jjlhh4e.mongodb.net/Faculty?retryWrites=true&w=majority&appName=Cluster1'; // Adjust to your MongoDB URI
 
 // Default Route (for testing)
 app.get('/', (req, res) => {
@@ -23,11 +23,11 @@ app.get('/', (req, res) => {
 });
 
 // Route to fetch records from MongoDB
-app.get('/studentlist', async (req, res) => {
+app.get('/FacultyList', async (req, res) => {
     try {
         const client = await MongoClient.connect(MONGODB_URI, { useUnifiedTopology: true });
         const db = client.db();
-        const collection = db.collection('studentlist');
+        const collection = db.collection('FacultyList');
 
         // Fetch one record
         const record = await collection.find({}).toArray();
@@ -44,5 +44,5 @@ app.get('/studentlist', async (req, res) => {
 // Error handling middleware (optional)
 app.use((err, req, res, next) => {
     console.error("Error middleware:", err);
-    res.status(500).send('Something went wrong!');
+    res.status(500).send('Something went wrong!');
 });
